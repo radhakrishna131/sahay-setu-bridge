@@ -1,0 +1,1 @@
+create policy "profiles admin update" on public.profiles for update to authenticated using (public.has_role(auth.uid(),'admin'));
