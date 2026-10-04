@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as CommunitiesIndexRouteImport } from './routes/communities.index'
+import { Route as CommunitiesSlugRouteImport } from './routes/communities.$slug'
+import { Route as JobsIndexRouteImport } from './routes/jobs.index'
+import { Route as JobsIdRouteImport } from './routes/jobs.$id'
+import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
+import { Route as MarketplaceIdRouteImport } from './routes/marketplace.$id'
+import { Route as PostsIdRouteImport } from './routes/posts.$id'
+import { Route as WorkersIndexRouteImport } from './routes/workers.index'
+import { Route as WorkersIdRouteImport } from './routes/workers.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunitiesIndexRoute = CommunitiesIndexRouteImport.update({
+  id: '/communities/',
+  path: '/communities/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunitiesSlugRoute = CommunitiesSlugRouteImport.update({
+  id: '/communities/$slug',
+  path: '/communities/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsIndexRoute = JobsIndexRouteImport.update({
+  id: '/jobs/',
+  path: '/jobs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsIdRoute = JobsIdRouteImport.update({
+  id: '/jobs/$id',
+  path: '/jobs/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceIndexRoute = MarketplaceIndexRouteImport.update({
+  id: '/marketplace/',
+  path: '/marketplace/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceIdRoute = MarketplaceIdRouteImport.update({
+  id: '/marketplace/$id',
+  path: '/marketplace/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostsIdRoute = PostsIdRouteImport.update({
+  id: '/posts/$id',
+  path: '/posts/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkersIndexRoute = WorkersIndexRouteImport.update({
+  id: '/workers/',
+  path: '/workers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkersIdRoute = WorkersIdRouteImport.update({
+  id: '/workers/$id',
+  path: '/workers/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/search': typeof SearchRoute
+  '/communities/$slug': typeof CommunitiesSlugRoute
+  '/jobs/$id': typeof JobsIdRoute
+  '/marketplace/$id': typeof MarketplaceIdRoute
+  '/posts/$id': typeof PostsIdRoute
+  '/workers/$id': typeof WorkersIdRoute
+  '/communities/': typeof CommunitiesIndexRoute
+  '/jobs/': typeof JobsIndexRoute
+  '/marketplace/': typeof MarketplaceIndexRoute
+  '/workers/': typeof WorkersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/search': typeof SearchRoute
+  '/communities/$slug': typeof CommunitiesSlugRoute
+  '/jobs/$id': typeof JobsIdRoute
+  '/marketplace/$id': typeof MarketplaceIdRoute
+  '/posts/$id': typeof PostsIdRoute
+  '/workers/$id': typeof WorkersIdRoute
+  '/communities': typeof CommunitiesIndexRoute
+  '/jobs': typeof JobsIndexRoute
+  '/marketplace': typeof MarketplaceIndexRoute
+  '/workers': typeof WorkersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/search': typeof SearchRoute
+  '/communities/$slug': typeof CommunitiesSlugRoute
+  '/jobs/$id': typeof JobsIdRoute
+  '/marketplace/$id': typeof MarketplaceIdRoute
+  '/posts/$id': typeof PostsIdRoute
+  '/workers/$id': typeof WorkersIdRoute
+  '/communities/': typeof CommunitiesIndexRoute
+  '/jobs/': typeof JobsIndexRoute
+  '/marketplace/': typeof MarketplaceIndexRoute
+  '/workers/': typeof WorkersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/search'
+    | '/communities/$slug'
+    | '/jobs/$id'
+    | '/marketplace/$id'
+    | '/posts/$id'
+    | '/workers/$id'
+    | '/communities/'
+    | '/jobs/'
+    | '/marketplace/'
+    | '/workers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/search'
+    | '/communities/$slug'
+    | '/jobs/$id'
+    | '/marketplace/$id'
+    | '/posts/$id'
+    | '/workers/$id'
+    | '/communities'
+    | '/jobs'
+    | '/marketplace'
+    | '/workers'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/search'
+    | '/communities/$slug'
+    | '/jobs/$id'
+    | '/marketplace/$id'
+    | '/posts/$id'
+    | '/workers/$id'
+    | '/communities/'
+    | '/jobs/'
+    | '/marketplace/'
+    | '/workers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  SearchRoute: typeof SearchRoute
+  CommunitiesSlugRoute: typeof CommunitiesSlugRoute
+  JobsIdRoute: typeof JobsIdRoute
+  MarketplaceIdRoute: typeof MarketplaceIdRoute
+  PostsIdRoute: typeof PostsIdRoute
+  WorkersIdRoute: typeof WorkersIdRoute
+  CommunitiesIndexRoute: typeof CommunitiesIndexRoute
+  JobsIndexRoute: typeof JobsIndexRoute
+  MarketplaceIndexRoute: typeof MarketplaceIndexRoute
+  WorkersIndexRoute: typeof WorkersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communities/': {
+      id: '/communities/'
+      path: '/communities'
+      fullPath: '/communities/'
+      preLoaderRoute: typeof CommunitiesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communities/$slug': {
+      id: '/communities/$slug'
+      path: '/communities/$slug'
+      fullPath: '/communities/$slug'
+      preLoaderRoute: typeof CommunitiesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs/': {
+      id: '/jobs/'
+      path: '/jobs'
+      fullPath: '/jobs/'
+      preLoaderRoute: typeof JobsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs/$id': {
+      id: '/jobs/$id'
+      path: '/jobs/$id'
+      fullPath: '/jobs/$id'
+      preLoaderRoute: typeof JobsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace/': {
+      id: '/marketplace/'
+      path: '/marketplace'
+      fullPath: '/marketplace/'
+      preLoaderRoute: typeof MarketplaceIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace/$id': {
+      id: '/marketplace/$id'
+      path: '/marketplace/$id'
+      fullPath: '/marketplace/$id'
+      preLoaderRoute: typeof MarketplaceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/posts/$id': {
+      id: '/posts/$id'
+      path: '/posts/$id'
+      fullPath: '/posts/$id'
+      preLoaderRoute: typeof PostsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workers/': {
+      id: '/workers/'
+      path: '/workers'
+      fullPath: '/workers/'
+      preLoaderRoute: typeof WorkersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workers/$id': {
+      id: '/workers/$id'
+      path: '/workers/$id'
+      fullPath: '/workers/$id'
+      preLoaderRoute: typeof WorkersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  SearchRoute: SearchRoute,
+  CommunitiesSlugRoute: CommunitiesSlugRoute,
+  JobsIdRoute: JobsIdRoute,
+  MarketplaceIdRoute: MarketplaceIdRoute,
+  PostsIdRoute: PostsIdRoute,
+  WorkersIdRoute: WorkersIdRoute,
+  CommunitiesIndexRoute: CommunitiesIndexRoute,
+  JobsIndexRoute: JobsIndexRoute,
+  MarketplaceIndexRoute: MarketplaceIndexRoute,
+  WorkersIndexRoute: WorkersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
