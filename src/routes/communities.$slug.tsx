@@ -28,7 +28,7 @@ function CommunityPage() {
   const cid = c.data?.id;
   const posts = useQuery({
     queryKey: ["posts", cid], enabled: !!cid,
-    queryFn: async () => (await supabase.from("posts").select("*, author:profiles(full_name, trade), comments(count), post_likes(count)").eq("community_id", cid!).order("created_at", { ascending: false })).data ?? [],
+    queryFn: async () => (await supabase.from("posts").select("*, author:profiles!posts_author_id_fkey(full_name, trade), comments(count), post_likes(count)").eq("community_id", cid!).order("created_at", { ascending: false })).data ?? [],
   });
   const member = useQuery({
     queryKey: ["member", cid, profile?.id], enabled: !!cid && !!profile,

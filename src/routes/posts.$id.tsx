@@ -22,8 +22,8 @@ function PostPage() {
   const { profile, isAdmin } = useAuth();
   const qc = useQueryClient();
   const [body, setBody] = useState("");
-  const p = useQuery({ queryKey: ["post", id], queryFn: async () => (await supabase.from("posts").select("*, author:profiles(id, full_name, trade), community:communities(name, slug)").eq("id", id).maybeSingle()).data });
-  const comments = useQuery({ queryKey: ["comments", id], queryFn: async () => (await supabase.from("comments").select("*, author:profiles(id, full_name)").eq("post_id", id).order("created_at")).data ?? [] });
+  const p = useQuery({ queryKey: ["post", id], queryFn: async () => (await supabase.from("posts").select("*, author:profiles!posts_author_id_fkey(id, full_name, trade), community:communities(name, slug)").eq("id", id).maybeSingle()).data });
+  const comments = useQuery({ queryKey: ["comments", id], queryFn: async () => (await supabase.from("comments").select("*, author:profiles!comments_author_id_fkey(id, full_name)").eq("post_id", id).order("created_at")).data ?? [] });
   const likes = useQuery({ queryKey: ["likes", id], queryFn: async () => (await supabase.from("post_likes").select("profile_id").eq("post_id", id)).data ?? [] });
   const liked = !!likes.data?.some((l) => l.profile_id === profile?.id);
 

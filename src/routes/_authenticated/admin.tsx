@@ -17,7 +17,7 @@ function Admin() {
   const { isAdmin } = useAuth();
   const qc = useQueryClient();
   const users = useQuery({ queryKey: ["adm-users"], enabled: isAdmin, queryFn: async () => (await supabase.from("profiles").select("*").not("user_id", "is", null).order("created_at", { ascending: false })).data ?? [] });
-  const posts = useQuery({ queryKey: ["adm-posts"], enabled: isAdmin, queryFn: async () => (await supabase.from("posts").select("*, author:profiles(full_name)").order("created_at", { ascending: false }).limit(50)).data ?? [] });
+  const posts = useQuery({ queryKey: ["adm-posts"], enabled: isAdmin, queryFn: async () => (await supabase.from("posts").select("*, author:profiles!posts_author_id_fkey(full_name)").order("created_at", { ascending: false }).limit(50)).data ?? [] });
   const jobs = useQuery({ queryKey: ["adm-jobs"], enabled: isAdmin, queryFn: async () => (await supabase.from("jobs").select("*").order("created_at", { ascending: false }).limit(50)).data ?? [] });
 
   const verify = useMutation({ mutationFn: async ({ id, v }: { id: string; v: boolean }) => { await supabase.from("profiles").update({ verified: v }).eq("id", id); }, onSuccess: () => qc.invalidateQueries({ queryKey: ["adm-users"] }) });
