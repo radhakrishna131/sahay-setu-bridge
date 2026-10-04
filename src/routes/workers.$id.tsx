@@ -23,7 +23,7 @@ function WorkerProfile() {
   const tools = useQuery({ queryKey: ["profile-tools", id], queryFn: async () => (await supabase.from("tool_listings").select("*").eq("owner_id", id)).data ?? [] });
 
   async function message() {
-    if (!profile) return navigate({ to: "/auth" });
+    if (!profile) { navigate({ to: "/auth" }); return; }
     const c = await openConversation(profile.id, id);
     navigate({ to: "/messages", search: { c } });
   }

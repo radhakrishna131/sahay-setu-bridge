@@ -41,7 +41,7 @@ function ToolDetail() {
   });
 
   async function message() {
-    if (!profile) return navigate({ to: "/auth" });
+    if (!profile) { navigate({ to: "/auth" }); return; }
     navigate({ to: "/messages", search: { c: await openConversation(profile.id, t.data!.owner_id) } });
   }
 

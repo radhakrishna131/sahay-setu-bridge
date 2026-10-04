@@ -44,7 +44,7 @@ function JobDetail() {
   });
 
   async function message() {
-    if (!profile) return navigate({ to: "/auth" });
+    if (!profile) { navigate({ to: "/auth" }); return; }
     const c = await openConversation(profile.id, job.data!.posted_by);
     navigate({ to: "/messages", search: { c } });
   }

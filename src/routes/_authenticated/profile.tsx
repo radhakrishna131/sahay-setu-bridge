@@ -51,12 +51,14 @@ function EditProfile() {
 
   async function onSubmit(v: F) {
     const { error } = await supabase.from("profiles").update({
-      ...v,
+      full_name: v.full_name, account_type: v.account_type, available: v.available,
+      headline: v.headline || null, trade: v.trade || null, city: v.city || null, bio: v.bio || null,
+      experience_years: v.experience_years,
       company_name: v.company_name || null, phone: v.phone || null, daily_rate: v.daily_rate || null,
       skills: (v.skills ?? "").split(",").map((s) => s.trim()).filter(Boolean).slice(0, 15),
       updated_at: new Date().toISOString(),
     }).eq("id", profile!.id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Profile saved");
     refreshProfile();
   }

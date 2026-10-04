@@ -11,7 +11,7 @@ import { useAuth } from "@/lib/auth";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>) => ({ mode: s["mode"] === "signup" ? ("signup" as const) : undefined }),
+  validateSearch: (s: Record<string, unknown>): { mode?: "signup" | undefined } => (s["mode"] === "signup" ? { mode: "signup" } : {}),
   head: () => seo("Sign in or join", "Sign in to SAHAY-SETU or create a free worker or employer account."),
   component: AuthPage,
 });

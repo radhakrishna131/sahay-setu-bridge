@@ -45,7 +45,7 @@ function PostJob() {
       ...v, company: v.company || profile!.company_name || profile!.full_name, posted_by: profile!.id,
       skills: (v.skills ?? "").split(",").map((s) => s.trim()).filter(Boolean),
     }).select("id").single();
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Job posted");
     navigate({ to: "/jobs/$id", params: { id: data.id } });
   }

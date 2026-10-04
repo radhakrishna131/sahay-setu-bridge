@@ -90,7 +90,7 @@ export function SaveButton({ type, id }: { type: "job" | "worker" | "tool" | "po
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!profile) return navigate({ to: "/auth" });
+        if (!profile) { navigate({ to: "/auth" }); return; }
         m.mutate();
       }}
       className={cn("rounded p-1.5 transition-colors hover:bg-muted", isSaved ? "text-primary" : "text-muted-foreground")}

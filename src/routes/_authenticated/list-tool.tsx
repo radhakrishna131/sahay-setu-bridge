@@ -40,7 +40,7 @@ function ListTool() {
   });
   async function onSubmit(v: F) {
     const { data, error } = await supabase.from("tool_listings").insert({ ...v, price_unit: v.listing_type === "sell" ? "once" : v.price_unit, owner_id: profile!.id }).select("id").single();
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Listing published");
     navigate({ to: "/marketplace/$id", params: { id: data.id } });
   }

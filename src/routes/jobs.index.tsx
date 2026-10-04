@@ -7,7 +7,7 @@ import { Empty, FilterSelect, ListSkeleton, PageHeader } from "@/components/site
 import { CITIES, JOB_TYPES, TRADES } from "@/lib/constants";
 import { seo } from "@/lib/seo";
 
-type S = { q?: string; trade?: string; city?: string; type?: string };
+type S = { q?: string | undefined; trade?: string | undefined; city?: string | undefined; type?: string | undefined };
 
 export const Route = createFileRoute("/jobs/")({
   validateSearch: (s: Record<string, unknown>): S => ({

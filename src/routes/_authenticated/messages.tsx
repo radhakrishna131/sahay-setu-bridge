@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/_authenticated/messages")({
-  validateSearch: (s: Record<string, unknown>) => ({ c: typeof s["c"] === "string" ? s["c"] : undefined }),
+  validateSearch: (s: Record<string, unknown>): { c?: string | undefined } => (typeof s["c"] === "string" ? { c: s["c"] } : {}),
   head: () => seo("Messages", "Conversations with employers and workers."),
   component: Messages,
 });
